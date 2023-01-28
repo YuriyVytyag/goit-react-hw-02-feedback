@@ -1,0 +1,8 @@
+.statisticHeader {
+  font-weight: 700px;
+}
+
+.statisticBlock {
+  display: flex;
+  flex-direction: column;
+}
