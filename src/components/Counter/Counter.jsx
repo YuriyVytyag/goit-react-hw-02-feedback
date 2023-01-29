@@ -1,8 +1,8 @@
 // import css from './Counter';
 import { Component } from 'react';
-import Buttons from 'components/Buttons/Buttons';
-import css from './Counter.module.css';
+import Button from 'components/Buttons/Buttons';
 import StatisticItem from 'components/Statistics/StatisticsItem';
+import { ButtonWrapper, StatisticHeader } from './Counter.styled';
 
 const data = [{ label: 'good' }, { label: 'neutral' }, { label: 'bad' }];
 
@@ -17,22 +17,6 @@ class Counter extends Component {
     this.setState(prev => ({ [value]: prev[value] + 1 }));
   };
 
-  goodBtn = () => {
-    this.setState(prevState => {
-      return { good: prevState.good + 1 };
-    });
-  };
-  neutralBtn = () => {
-    this.setState(prevState => {
-      return { neutral: prevState.neutral + 1 };
-    });
-  };
-  badBtn = () => {
-    this.setState(prevState => {
-      return { bad: prevState.bad + 1 };
-    });
-  };
-
   countTotalFeedback = () => {
     const { good, neutral, bad } = this.state;
 
@@ -45,19 +29,18 @@ class Counter extends Component {
   render() {
     return (
       <div className="Counter">
-        <Buttons
-          goodBtn={this.goodBtn}
-          neutralBtn={this.neutralBtn}
-          badBtn={this.badBtn}
-        />
-        <h3 className={css.statisticHeader}>Statistics</h3>
-        {/* <div className={css.statisticBlock}>
-          <span className={css.statisticItem}>Good:{this.state.good}</span>
-          <span className={css.statisticItem}>
-            Neutral:{this.state.neutral}
-          </span>
-          <span className={css.statisticItem}>Bad:{this.state.bad}</span>
-        </div> */}
+        <ButtonWrapper>
+          {data.map(({ label }, index) => {
+            return (
+              <Button
+                key={label}
+                title={label}
+                onClick={() => this.handleIncrement(label)}
+              />
+            );
+          })}
+        </ButtonWrapper>
+        <StatisticHeader>Statistics</StatisticHeader>
         {this.countTotalFeedback() ? (
           <div>
             <ul>

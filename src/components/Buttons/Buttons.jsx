@@ -1,21 +1,13 @@
 import React from 'react';
-import css from './Buttons.module.css';
+// import PropTypes from 'prop-types';
+import { ButtonItem } from 'components/Counter/Counter.styled';
 
-const Buttons = ({ goodBtn, neutralBtn, badBtn }) => {
+export default function Button({ title, onClick }) {
   return (
-    <div className="buttons">
-      <h2 className={css.header}>Please leave feedback</h2>
-      <button className={css.buttonItem} type="button" onClick={goodBtn}>
-        Good
+    <ButtonItem>
+      <button type="button" onClick={onClick}>
+        {title}
       </button>
-      <button className={css.buttonItem} type="button" onClick={neutralBtn}>
-        Neutral
-      </button>
-      <button className={css.buttonItem} type="button" onClick={badBtn}>
-        Bad
-      </button>
-    </div>
+    </ButtonItem>
   );
-};
-
-export default Buttons;
+}
